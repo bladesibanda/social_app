@@ -50,6 +50,10 @@ gem "factory_bot_rails", "~> 6.2", :groups => [:development, :test]
 
 gem "shoulda-matchers", "~> 5.3", :group => :test
 
-gem "shoulda", "~> 2.11", :group => :test
+# gem "shoulda", "~> 2.11", :group => :test
 
 gem "annotate", "~> 3.2", :group => :development
+
+gem "shoulda-context", "~> 2.0", :group => :test
+
+gem "faker", "~> 3.1", :groups => [:development, :test]
