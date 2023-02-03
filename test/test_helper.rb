@@ -18,4 +18,14 @@ class ActiveSupport::TestCase
   end
 
   include FactoryBot::Syntax::Methods
+
+  def json_response
+    JSON.parse response.body
+  end
+
+  def auth_headers(email, password)
+    post auth_login_url, params: { email: email, password: password }
+    token = json_response["token"]
+    { "Authorization": "Bearer #{token}" }
+  end
 end

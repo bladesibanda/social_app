@@ -57,3 +57,5 @@ gem "annotate", "~> 3.2", :group => :development
 gem "shoulda-context", "~> 2.0", :group => :test
 
 gem "faker", "~> 3.1", :groups => [:development, :test]
+
+gem "jwt", "~> 2.7"
