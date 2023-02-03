@@ -29,6 +29,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    authorize @user
     if @user.update(user_params)
       render :show, status: :ok, location: @user
     else
@@ -39,6 +40,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
+    authorize @user
     @user.destroy
   end
 

@@ -45,6 +45,14 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :unauthorized
   end
 
+  test "should not update user if not owner" do
+    user2 = create :user
+    patch user_url(@user), params: { user: { email: @user.email, name: @user.name,
+                                            password: "secret", password_confirmation: "secret" } },
+                           as: :json, headers: auth_headers(user2.email, user2.password)
+    assert_response :forbidden
+  end
+
   test "should update user partially" do
     patch user_url(@user), params: { user: { email: @user.email, name: "New Name" } }, as: :json,
                            headers: auth_headers(@user.email, @user.password)
@@ -57,6 +65,15 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_response :no_content
+  end
+
+  test "should not destroy user if not owner" do
+    user2 = create :user
+    assert_difference("User.count", 0) do
+      delete user_url(@user), as: :json, headers: auth_headers(user2.email, user2.password)
+    end
+
+    assert_response :forbidden
   end
 
   test "should not destroy user if unauthenticated" do

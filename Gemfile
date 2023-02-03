@@ -59,3 +59,5 @@ gem "shoulda-context", "~> 2.0", :group => :test
 gem "faker", "~> 3.1", :groups => [:development, :test]
 
 gem "jwt", "~> 2.7"
+
+gem "pundit", "~> 2.3"
