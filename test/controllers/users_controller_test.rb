@@ -28,6 +28,11 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should update user partially" do
+    patch user_url(@user), params: { user: { email: @user.email, name: "New Name" } }, as: :json
+    assert_response :success
+  end
+
   test "should destroy user" do
     assert_difference("User.count", -1) do
       delete user_url(@user), as: :json
